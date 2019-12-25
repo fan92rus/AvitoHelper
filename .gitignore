@@ -18,6 +18,8 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+[Tt]ests/
+docker*
 x64/
 x86/
 [Aa][Rr][Mm]/
