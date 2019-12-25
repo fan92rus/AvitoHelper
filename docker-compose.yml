@@ -1,0 +1,68 @@
+version: '3.5'
+
+services:
+  nginx-proxy:
+    container_name: 'proxy'
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+      - certs:/etc/nginx/certs
+      - vhost.d:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+     - proxy
+  avitohelper:
+    container_name: 'avitohelper'
+    image: backend
+    environment:
+      VIRTUAL_HOST: 'api.product-find.ru'
+      VIRTUAL_PORT: '82'
+      AUTH_EMAIL_LOGIN: 'auth@product-find.ru'
+      AUTH_EMAIL_PASSWORD: 'Ojhcf3998'
+      PRODUCT_EMAIL_LOGIN: 'products@product-find.ru'
+      PRODUCT_EMAIL_PASSWORD: 'Ojhcf3998'
+      EMAIL_SMTP_HOST: 'smtp.yandex.ru'
+      EMAIL_SMTP_PORT: 587
+      FRONTEND_DOMAIN: 'product-find.ru'
+      LETSENCRYPT_HOST: 'api.product-find.ru'
+      LETSENCRYPT_EMAIL: 'admin@product-find.ru'
+      ASPNETCORE_ENVIRONMEN: 'Development'
+      ASPNETCORE_URLS: 'http://+:82'
+    volumes:
+      - static/:/app/static/
+    ports:
+      - "82:82"
+    depends_on:
+     - postgres
+    networks:
+     - proxy
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1"
+      POSTGRES_DB: "AvitoParser"
+    networks:
+     - proxy
+  client:
+    environment:
+      VIRTUAL_HOST: 'product-find.ru'
+      VIRTUAL_PORT: '81'
+      LETSENCRYPT_HOST: product-find.ru
+      LETSENCRYPT_EMAIL: admin@product-find.ru
+    image: helper_front
+    ports:
+      - "81:80"
+    networks:
+     - proxy
+networks:
+  proxy:
+    driver: bridge
+volumes:
+  certs:
+  vhost.d:
+  html:

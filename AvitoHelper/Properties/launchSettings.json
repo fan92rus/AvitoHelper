@@ -1,0 +1,58 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:58417",
+      "sslPort": 44367
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "environmentVariables": {
+        "EMAIL_SMTP_HOST": "smtp.yandex.ru",
+        "PRODUCT_EMAIL_LOGIN": "products@product-find.ru",
+        "FRONTEND_DOMAIN": "localhost",
+        "AUTH_EMAIL_LOGIN": "auth@product-find.ru",
+        "AUTH_EMAIL_PASSWORD": "Ojhcf3998",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PRODUCT_EMAIL_PASSWORD": "Ojhcf3998",
+        "EMAIL_SMTP_PORT": "587"
+      },
+      "nativeDebugging": false
+    },
+    "AvitoHelper": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "environmentVariables": {
+        "EMAIL_SMTP_LOGIN": "fan98rus@yandex.ru",
+        "EMAIL_SMTP_HOST": "smtp.yandex.ru",
+        "EMAIL_SMTP_PASSWORD": "Kjvjyl98",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EMAIL_SMTP_PORT": "587"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/weatherforecast",
+      "environmentVariables": {
+        "EMAIL_SMTP_LOGIN": "fan98rus@yandex.ru",
+        "EMAIL_SMTP_HOST": "smtp.yandex.ru",
+        "EMAIL_SMTP_PASSWORD": "Kjvjyl98",
+        "ASPNETCORE_URLS": "https://+:442;http://+:82",
+        "ASPNETCORE_HTTPS_PORT": "442",
+        "EMAIL_SMTP_PORT": "465"
+      },
+      "httpPort": 82,
+      "useSSL": true,
+      "sslPort": 442
+    }
+  }
+}
